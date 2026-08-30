@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema oficial para que Gabri responda a una declaración amorosa">
+    <title>Sistema Oficial - Gabri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app" id="app">
+        <!-- Pantalla 1: Introducción -->
+        <section class="screen active" id="screen-intro" data-screen="intro">
+            <div class="container">
+                <span class="badge">INFORME OFICIAL</span>
+                <h1 class="title">Gabri, tenemos un pequeño problema.</h1>
+                <p class="text">
+                    Hace aproximadamente 48 horas,<br>
+                    <strong>el desgraciado que ha hecho esto</strong><br>
+                    tomó una decisión.
+                </p>
+                <p class="text highlight">Se declaró.</p>
+                <div class="pause"></div>
+                <p class="text">Y ahora estamos aquí.</p>
+                
+                <div class="status-card">
+                    <div class="status-header">
+                        <span class="status-label">ESTADO DE LA SITUACIÓN</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 97%"></div>
+                    </div>
+                    <p class="status-text"><strong>97% innecesariamente complicada</strong></p>
+                </div>
+
+                <p class="meme-note">Esto podría haberse solucionado por WhatsApp.</p>
+
+                <button class="btn btn-primary" id="btn-intro-next">Vale, enséñame qué quieres</button>
+            </div>
+        </section>
+
+        <!-- Pantalla 2: El Informe -->
+        <section class="screen" id="screen-informe" data-screen="informe">
+            <div class="container">
+                <span class="badge">INFORME CONFIDENCIAL</span>
+                <h1 class="title">INFORME CONFIDENCIAL</h1>
+                
+                <div class="card report-card">
+                    <div class="report-field">
+                        <span class="field-label">Sujeto:</span>
+                        <span class="field-value">Gabri</span>
+                    </div>
+                    <div class="report-field">
+                        <span class="field-label">Remitente:</span>
+                        <span class="field-value">El desgraciado que ha hecho esto</span>
+                    </div>
+                    <div class="report-field">
+                        <span class="field-label">Motivo:</span>
+                        <span class="field-value">Te has convertido en un problema administrativo</span>
+                    </div>
+                    <div class="report-field">
+                        <span class="field-label">Estado:</span>
+                        <span class="field-value status-pending">Esperando respuesta</span>
+                    </div>
+                    <div class="report-field">
+                        <span class="field-label">Nivel de nervios del remitente:</span>
+                        <span class="field-value">No disponible por razones legales.</span>
+                    </div>
+                </div>
+
+                <p class="text center">Tranquila, esto no es una intervención del FBI.</p>
+                <p class="text center small">Solo quería hacer algo diferente.</p>
+                <p class="meme-note">Presupuesto del proyecto: 0€.</p>
+
+                <button class="btn btn-primary" id="btn-informe-next">Continuar con el procedimiento</button>
+            </div>
+        </section>
+
+        <!-- Pantalla 3: Aclaración -->
+        <section class="screen" id="screen-aclaracion" data-screen="aclaracion">
+            <div class="container">
+                <span class="badge">ACLARACIÓN</span>
+                <h1 class="title">Ahora en serio.</h1>
+                
+                <p class="text highlight">Me gustas.</p>
+                
+                <div class="card text-card">
+                    <p class="text">Ya te lo he pedido una vez y me dijiste que necesitabas asimilarlo.</p>
+                    <p class="text">Te pregunté al día siguiente y al final pasó un poco de tiempo hasta que volvimos a hablar.</p>
+                    <p class="text">No quiero presionarte ni hacerte sentir que tienes que responder ahora mismo.</p>
+                </div>
+
+                <div class="card text-card accent">
+                    <p class="text highlight">Solo quería que supieras que sigo teniendo ganas de intentarlo contigo.</p>
+                </div>
+
+                <p class="text small center">Sí. Después de todo esto sigo aquí.</p>
+                <p class="text small center">Al parecer no aprendo.</p>
+                <p class="meme-note">Tiempo invertido: demasiado.</p>
+
+                <button class="btn btn-primary" id="btn-aclaracion-next">Vale, vamos al momento incómodo</button>
+            </div>
+        </section>
+
+        <!-- Pantalla 4: La Decisión -->
+        <section class="screen" id="screen-decision" data-screen="decision">
+            <div class="container">
+                <span class="badge">DECISIÓN REQUERIDA</span>
+                <h1 class="title">Bueno, Gabri.</h1>
+                
+                <p class="text center small">Después de un exhaustivo proceso de investigación<br>(aproximadamente 0 investigaciones)...</p>
+                
+                <h2 class="subtitle">¿Qué hacemos?</h2>
+
+                <div class="options-grid">
+                    <button class="option-card" data-response="SI">
+                        <div class="option-icon">✓</div>
+                        <h3 class="option-title">SÍ</h3>
+                        <p class="option-text">Procederemos inmediatamente.</p>
+                    </button>
+                    
+                    <button class="option-card" data-response="NO">
+                        <div class="option-icon">✗</div>
+                        <h3 class="option-title">NO</h3>
+                        <p class="option-text">Entendido. Sobreviviremos. Probablemente.</p>
+                    </button>
+                    
+                    <button class="option-card" data-response="NECESITO_MAS_TIEMPO">
+                        <div class="option-icon">⏳</div>
+                        <h3 class="option-title">NECESITO MÁS TIEMPO</h3>
+                        <p class="option-text">El consejo acepta tu decisión.</p>
+                    </button>
+                </div>
+
+                <p class="meme-note">¿Era necesario hacer una web? No. ¿La hicimos igualmente? Sí.</p>
+                <p class="meme-note">Departamento de decisiones cuestionables.</p>
+            </div>
+        </section>
+
+        <!-- Pantalla Respuesta: SÍ -->
+        <section class="screen" id="screen-yes" data-screen="yes">
+            <div class="container">
+                <div class="confetti-container" id="confetti"></div>
+                <span class="badge success">RESULTADO HISTÓRICO</span>
+                <h1 class="title">¿¿¿¿¿SÍ?????</h1>
+                
+                <p class="text highlight center">SEÑORES, TENEMOS UNA SITUACIÓN.</p>
+                
+                <div class="card celebration-card">
+                    <p class="text">El desgraciado que ha hecho esto acaba de recibir una noticia histórica.</p>
+                </div>
+
+                <p class="text center">Bueno...</p>
+                <p class="text center">Ahora toca hablar como dos personas normales.</p>
+                
+                <p class="meme-note">Sistema certificado por nadie. 100% legalmente innecesario.</p>
+
+                <button class="btn btn-primary" id="btn-yes-back">Volver a la civilización</button>
+            </div>
+        </section>
+
+        <!-- Pantalla Respuesta: NO -->
+        <section class="screen" id="screen-no" data-screen="no">
+            <div class="container">
+                <span class="badge">RESULTADO</span>
+                <h1 class="title">Ah.</h1>
+                
+                <div class="large-space"></div>
+                
+                <p class="text center">Bueno.</p>
+                <div class="pause"></div>
+                <p class="text center">No era exactamente el resultado que esperaba.</p>
+                <div class="pause"></div>
+                <p class="text center">Pero gracias por ser sincera.</p>
+                
+                <div class="large-space"></div>
+                
+                <p class="text highlight center">El desgraciado que ha hecho esto seguirá con su vida.</p>
+                
+                <p class="meme-note center">*Con daños emocionales mínimos y una web completamente innecesaria.*</p>
+
+                <button class="btn btn-secondary" id="btn-no-back">Volver</button>
+            </div>
+        </section>
+
+        <!-- Pantalla Respuesta: NECESITO MÁS TIEMPO -->
+        <section class="screen" id="screen-more-time" data-screen="more-time">
+            <div class="container">
+                <span class="badge info">SOLICITUD PROCESADA</span>
+                <h1 class="title">Solicitud de tiempo recibida.</h1>
+                
+                <p class="text center">El consejo ha estudiado tu petición.</p>
+                
+                <div class="card accent">
+                    <p class="text highlight center">Respuesta oficial: aprobado.</p>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-header">
+                        <span class="status-label">PACIENCIA DEL REMITENTE</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                    <p class="status-text"><strong>100%</strong></p>
+                </div>
+
+                <p class="text center">Tómate tu tiempo.</p>
+                <p class="text highlight center">No hay prisa.</p>
+                
+                <p class="meme-note center">Aunque la web ya está hecha, así que técnicamente yo he invertido demasiado en esto.</p>
+
+                <button class="btn btn-secondary" id="btn-more-time-back">Volver</button>
+            </div>
+        </section>
+
+        <!-- Loading overlay -->
+        <div class="loading-overlay" id="loading">
+            <div class="spinner"></div>
+            <p>Enviando respuesta al sistema...</p>
+        </div>
+
+        <!-- Toast notification -->
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
