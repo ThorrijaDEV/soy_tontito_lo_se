@@ -36,7 +36,9 @@
                     <p class="status-text"><strong>97% innecesariamente complicada</strong></p>
                 </div>
 
-                <p class="meme-note">Esto podría haberse solucionado por WhatsApp.</p>
+                <p class="meme-note">Esto podría haberse solucionado por Instagram.</p>
+                <p class="meme-note">Presupuesto del proyecto: 0€.</p>
+                <p class="meme-note random-slot" id="intro-random"></p>
 
                 <button class="btn btn-primary" id="btn-intro-next">Vale, enséñame qué quieres</button>
             </div>
@@ -73,7 +75,9 @@
 
                 <p class="text center">Tranquila, esto no es una intervención del FBI.</p>
                 <p class="text center small">Solo quería hacer algo diferente.</p>
-                <p class="meme-note">Presupuesto del proyecto: 0€.</p>
+                <p class="meme-note">Tiempo invertido: demasiado.</p>
+                <div class="reaction-line" id="informe-reaction"></div>
+                <p class="meme-note random-slot" id="informe-random"></p>
 
                 <button class="btn btn-primary" id="btn-informe-next">Continuar con el procedimiento</button>
             </div>
@@ -99,7 +103,8 @@
 
                 <p class="text small center">Sí. Después de todo esto sigo aquí.</p>
                 <p class="text small center">Al parecer no aprendo.</p>
-                <p class="meme-note">Tiempo invertido: demasiado.</p>
+                <p class="meme-note">Profesionalmente innecesario.</p>
+                <p class="meme-note random-slot" id="aclaracion-random"></p>
 
                 <button class="btn btn-primary" id="btn-aclaracion-next">Vale, vamos al momento incómodo</button>
             </div>
@@ -109,9 +114,17 @@
         <section class="screen" id="screen-decision" data-screen="decision">
             <div class="container">
                 <span class="badge">DECISIÓN REQUERIDA</span>
+                <div class="reaction-chip" id="decision-intro-chip">CHAT, TENEMOS UN PROBLEMA.</div>
                 <h1 class="title">Bueno, Gabri.</h1>
                 
                 <p class="text center small">Después de un exhaustivo proceso de investigación<br>(aproximadamente 0 investigaciones)...</p>
+                
+                <div class="banner" id="decision-banner"></div>
+
+                <div class="reaction-pause">
+                    <p class="text small center">SON...</p>
+                    <p class="text small center">Gabri tiene que tomar una decisión.</p>
+                </div>
                 
                 <h2 class="subtitle">¿Qué hacemos?</h2>
 
@@ -135,8 +148,9 @@
                     </button>
                 </div>
 
-                <p class="meme-note">¿Era necesario hacer una web? No. ¿La hicimos igualmente? Sí.</p>
+                <p class="meme-note">¿Era necesario hacer una web? ❌ No. ¿La hicimos igualmente? ✅ Sí.</p>
                 <p class="meme-note">Departamento de decisiones cuestionables.</p>
+                <p class="meme-note random-slot" id="decision-random"></p>
             </div>
         </section>
 
@@ -145,18 +159,30 @@
             <div class="container">
                 <div class="confetti-container" id="confetti"></div>
                 <span class="badge success">RESULTADO HISTÓRICO</span>
+                <div class="reaction-chip big" id="yes-chat">CHAT.</div>
                 <h1 class="title">¿¿¿¿¿SÍ?????</h1>
                 
                 <p class="text highlight center">SEÑORES, TENEMOS UNA SITUACIÓN.</p>
                 
                 <div class="card celebration-card">
                     <p class="text">El desgraciado que ha hecho esto acaba de recibir una noticia histórica.</p>
+                    <div class="meme-emoji-row">🎉 🏆 🐐 🕊️</div>
+                    <p class="banner-yes">WE ARE SO BACK.</p>
                 </div>
+
+                <p class="text highlight center">W GIGANTE.</p>
+                <p class="text center">LA PEACE 🕊️</p>
+                <p class="text center">NAH. ESTO ES REAL.</p>
+                <p class="text center">CHAT, ¿QUÉ ESTÁ PASANDO?</p>
+                <p class="text center">CHAT, ESTO ES REAL.</p>
+
+                <div class="reaction-line" id="yes-reaction"></div>
 
                 <p class="text center">Bueno...</p>
                 <p class="text center">Ahora toca hablar como dos personas normales.</p>
                 
                 <p class="meme-note">Sistema certificado por nadie. 100% legalmente innecesario.</p>
+                <p class="meme-note random-slot" id="yes-random"></p>
 
                 <button class="btn btn-primary" id="btn-yes-back">Volver a la civilización</button>
             </div>
@@ -166,6 +192,7 @@
         <section class="screen" id="screen-no" data-screen="no">
             <div class="container">
                 <span class="badge">RESULTADO</span>
+                <div class="reaction-chip big" id="no-reaction">NAH BRO 💀</div>
                 <h1 class="title">Ah.</h1>
                 
                 <div class="large-space"></div>
@@ -176,11 +203,20 @@
                 <div class="pause"></div>
                 <p class="text center">Pero gracias por ser sincera.</p>
                 
+                <div class="card meme-card">
+                    <p class="banner-no">ESTAMOS COCINADOS. 💀</p>
+                    <p class="banner-no">MASSIVE L.</p>
+                    <p class="text center">Entendible, que tenga un buen día.</p>
+                    <p class="text center">LA PEACE 🕊️</p>
+                </div>
+                
                 <div class="large-space"></div>
                 
                 <p class="text highlight center">El desgraciado que ha hecho esto seguirá con su vida.</p>
                 
                 <p class="meme-note center">*Con daños emocionales mínimos y una web completamente innecesaria.*</p>
+                <p class="meme-note center">SE ACABÓ. → (Se acabó el juego)</p>
+                <p class="meme-note center">Estamos cocinados 💀</p>
 
                 <button class="btn btn-secondary" id="btn-no-back">Volver</button>
             </div>
@@ -190,12 +226,15 @@
         <section class="screen" id="screen-more-time" data-screen="more-time">
             <div class="container">
                 <span class="badge info">SOLICITUD PROCESADA</span>
+                <div class="reaction-chip">CHAT, NECESITAMOS CALMA.</div>
                 <h1 class="title">Solicitud de tiempo recibida.</h1>
                 
                 <p class="text center">El consejo ha estudiado tu petición.</p>
                 
                 <div class="card accent">
+                    <p class="text highlight center">El consejo ha deliberado.</p>
                     <p class="text highlight center">Respuesta oficial: aprobado.</p>
+                    <p class="banner-more">LET HER COOK. → QUE COCINE. 👨‍🍳</p>
                 </div>
 
                 <div class="status-card">
@@ -212,15 +251,57 @@
                 <p class="text highlight center">No hay prisa.</p>
                 
                 <p class="meme-note center">Aunque la web ya está hecha, así que técnicamente yo he invertido demasiado en esto.</p>
+                <p class="meme-note center random-slot" id="moretime-random"></p>
 
                 <button class="btn btn-secondary" id="btn-more-time-back">Volver</button>
             </div>
         </section>
 
+        <!-- Easter Egg -->
+        <section class="screen" id="screen-easter-egg" data-screen="easter-egg">
+            <div class="container">
+                <span class="badge">EASTER EGG</span>
+                <h1 class="title">La hemos liado.</h1>
+                
+                <div class="card accent">
+                    <p class="text center">Psst...</p>
+                    <p class="text center">Si has llegado hasta aquí, probablemente te estés preguntando por qué existe esta página.</p>
+                    <p class="text highlight center">Yo también.</p>
+                </div>
+                
+                <div class="card meme-card">
+                    <p class="banner-more">NO PUEDE SER 💀</p>
+                    <p class="text center">¿Pero qué cojones?</p>
+                </div>
+
+                <p class="meme-note center">100% certificado por nadie.</p>
+                <p class="meme-note center">Profesionalmente innecesario.</p>
+                <p class="meme-note center">Presupuesto del proyecto: 0€. Tiempo invertido: demasiado.</p>
+                <p class="meme-note center">Departamento de decisiones cuestionables.</p>
+                <p class="meme-note center">10% del procedimiento. El otro 90% era solo para presumir.</p>
+
+                <button class="btn btn-secondary" id="btn-easter-back">Volver a la realidad</button>
+            </div>
+        </section>
+
+        <!-- SYSTEM ERROR overlay -->
+        <div class="system-error-overlay" id="system-error">
+            <div class="system-error-content">
+                <p class="system-error-title">SYSTEM ERROR</p>
+                <p>Windows ha detectado un problema y debe reiniciarse.</p>
+                <p>Realmente no.</p>
+                <button class="btn btn-secondary" id="btn-error-close">Continuar (mentira)</button>
+            </div>
+        </div>
+
         <!-- Loading overlay -->
         <div class="loading-overlay" id="loading">
             <div class="spinner"></div>
-            <p>Enviando respuesta al sistema...</p>
+            <p class="loading-label" id="loading-label">PROCESANDO RESPUESTA...</p>
+            <div class="progress-bar loading-bar">
+                <div class="progress-fill" id="loading-fill"></div>
+            </div>
+            <p class="loading-sub" id="loading-sub">CHAT ESTÁ COCINANDO...</p>
         </div>
 
         <!-- Toast notification -->

@@ -7,8 +7,88 @@ const screens = {
     decision: 'screen-decision',
     yes: 'screen-yes',
     no: 'screen-no',
-    moreTime: 'screen-more-time'
+    moreTime: 'screen-more-time',
+    easterEgg: 'screen-easter-egg'
 };
+
+const randomMemes = [
+    "Señores, tenemos una situación.",
+    "Tenemos que hablar.",
+    "Esto no es un simulacro.",
+    "El consejo ha deliberado.",
+    "Entendible, que tenga un buen día.",
+    "VAMOOOOOS.",
+    "¿¿¿¿¿SÍ?????",
+    "CHAT, ¿QUÉ ESTÁ PASANDO?",
+    "CHAT, ESTO ES REAL.",
+    "No puede ser.",
+    "TÍO...",
+    "Estamos cocinando.",
+    "Se acabó el juego.",
+    "La hemos liado.",
+    "¿Era necesario hacer una web? ❌ No. ¿La hicimos igualmente? ✅ Sí.",
+    "Presupuesto del proyecto: 0€.",
+    "Tiempo invertido: demasiado.",
+    "Profesionalmente innecesario.",
+    "100% certificado por nadie.",
+    "Departamento de decisiones cuestionables.",
+    "HEMOS VUELTO.",
+    "SE ACABÓ.",
+    "DEJADLE COCINAR.",
+    "ESTÁ COCINANDO.",
+    "CONCÉNTRATE.",
+    "CHAT, ¿ESTOY COCINADO?",
+    "CHAT, ¿ESTO ES REAL?",
+    "NO PUEDE SER 💀",
+    "TÍOOOOOO",
+    "¿PERO QUÉ COJONES?",
+    "DIOS MÍO.",
+    "VAMOOOOOS.",
+    "W común.",
+    "W GIGANTE.",
+    "L COLOSAL.",
+    "No me jodas, bro.",
+    "Estamos acabados.",
+    "NAH BRO 💀",
+    "WE ARE SO BACK.",
+    "LA PEACE 🕊️",
+    "QUE COCINE. 👨‍🍳"
+];
+
+const randomSlots = {
+    intro: 'intro-random',
+    informe: 'informe-random',
+    aclaracion: 'aclaracion-random',
+    decision: 'decision-random',
+    yes: 'yes-random',
+    moreTime: 'moretime-random'
+};
+
+// Specific reaction text shown on certain screens
+const decisionBanners = [
+    "Señores, tenemos una situación.",
+    "Tenemos que hablar.",
+    "Esto no es un simulacro.",
+    "CHAT, TENEMOS UN PROBLEMA.",
+    "El consejo ha deliberado."
+];
+
+const informeReactions = [
+    "TÍO... 💀",
+    "ESTAMOS COCINADOS.",
+    "BRO ESTÁ COCINADO 💀",
+    "Nah, bro 💀",
+    "CHAT, ESTO ES REAL."
+];
+
+const yesReactions = [
+    "HEMOS VUELTO.",
+    "W GIGANTE.",
+    "VAMOOOOOS.",
+    "LA PEACE 🕊️",
+    "CHAT, ¿QUÉ ESTÁ PASANDO?",
+    "NAH. ESTO ES REAL."
+];
 
 let currentScreen = 'intro';
 let isSubmitting = false;
@@ -20,13 +100,55 @@ function showScreen(screenKey) {
         target.classList.add('active');
         currentScreen = screenKey;
         window.scrollTo(0, 0);
+        
+        // Fill random meme slot if one exists for this screen
+        const randomId = randomSlots[screenKey];
+        if (randomId) {
+            const el = document.getElementById(randomId);
+            if (el) el.textContent = getRandom(randomMemes);
+        }
+        
+        // Fill special reactions
+        if (screenKey === 'decision') {
+            const banner = document.getElementById('decision-banner');
+            if (banner) banner.textContent = getRandom(decisionBanners);
+            const introChip = document.getElementById('decision-intro-chip');
+            if (introChip) introChip.textContent = 'CHAT, TENEMOS UN PROBLEMA.';
+        }
+        if (screenKey === 'informe') {
+            const line = document.getElementById('informe-reaction');
+            if (line) setReactionLine(line, informeReactions);
+        }
+        if (screenKey === 'yes') {
+            const line = document.getElementById('yes-reaction');
+            if (line) setReactionLine(line, yesReactions);
+            const chat = document.getElementById('yes-chat');
+            if (chat) chat.textContent = 'CHAT.';
+            createConfetti();
+        }
     }
+}
+
+function setReactionLine(container, arr) {
+    container.innerHTML = '';
+    const span = document.createElement('span');
+    span.className = 'reaction-text';
+    span.textContent = getRandom(arr);
+    container.appendChild(span);
 }
 
 function showLoading(show) {
     const loading = document.getElementById('loading');
     if (show) {
+        const fill = document.getElementById('loading-fill');
+        const label = document.getElementById('loading-label');
+        const sub = document.getElementById('loading-sub');
+        fill.style.width = '0%';
+        label.textContent = 'PROCESANDO RESPUESTA...';
+        sub.textContent = 'CHAT ESTÁ COCINANDO...';
         loading.classList.add('active');
+        // Animate the fake progress
+        setTimeout(() => { fill.style.width = '87%'; }, 50);
     } else {
         loading.classList.remove('active');
     }
@@ -115,6 +237,8 @@ async function submitResponse(response) {
     isSubmitting = true;
     showLoading(true);
     
+    const startTime = Date.now();
+    
     try {
         const formData = new FormData();
         formData.append('respuesta', response);
@@ -129,6 +253,12 @@ async function submitResponse(response) {
             }
         });
         
+        // Ensure the fake loading shows for at least ~1.2s
+        const elapsed = Date.now() - startTime;
+        if (elapsed < 1200) {
+            await new Promise(r => setTimeout(r, 1200 - elapsed));
+        }
+        
         if (resp.ok) {
             showToast('Respuesta enviada correctamente ✓', 'success');
         } else {
@@ -136,6 +266,10 @@ async function submitResponse(response) {
         }
     } catch (error) {
         console.error('Formspree error:', error);
+        const elapsed = Date.now() - startTime;
+        if (elapsed < 1200) {
+            await new Promise(r => setTimeout(r, 1200 - elapsed));
+        }
         showToast('Error al enviar. Intenta de nuevo.', 'error');
         isSubmitting = false;
         showLoading(false);
@@ -153,7 +287,6 @@ function handleResponse(response) {
         
         switch (response) {
             case 'SI':
-                createConfetti();
                 showScreen('yes');
                 break;
             case 'NO':
@@ -188,6 +321,36 @@ function initEventListeners() {
     document.getElementById('btn-yes-back').addEventListener('click', () => showScreen('intro'));
     document.getElementById('btn-no-back').addEventListener('click', () => showScreen('decision'));
     document.getElementById('btn-more-time-back').addEventListener('click', () => showScreen('decision'));
+    document.getElementById('btn-easter-back').addEventListener('click', () => showScreen('intro'));
+    document.getElementById('btn-error-close').addEventListener('click', () => {
+        document.getElementById('system-error').classList.remove('active');
+    });
+    
+    // Safer number: tap the small text "97%" 5 times fast -> easter egg
+    let easterCount = 0;
+    const introRandom = document.getElementById('intro-random');
+    if (introRandom) {
+        introRandom.addEventListener('click', () => {
+            easterCount++;
+            if (easterCount >= 5) {
+                showScreen('easterEgg');
+                easterCount = 0;
+            }
+        });
+    }
+    
+    // Click 5 times on the decision chip -> system error (visual meme)
+    let errorCount = 0;
+    const decisionChip = document.getElementById('decision-intro-chip');
+    if (decisionChip) {
+        decisionChip.addEventListener('click', () => {
+            errorCount++;
+            if (errorCount >= 5) {
+                document.getElementById('system-error').classList.add('active');
+                errorCount = 0;
+            }
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -197,10 +360,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+        if (document.getElementById('system-error').classList.contains('active')) {
+            document.getElementById('system-error').classList.remove('active');
+            return;
+        }
         if (currentScreen === 'informe' || currentScreen === 'aclaracion' || currentScreen === 'decision') {
             showScreen('intro');
         } else if (currentScreen === 'yes' || currentScreen === 'no' || currentScreen === 'moreTime') {
             showScreen('decision');
+        } else if (currentScreen === 'easterEgg') {
+            showScreen('intro');
         }
     }
 });
